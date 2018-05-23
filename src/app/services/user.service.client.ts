@@ -16,7 +16,7 @@ users: User[] = [
 
  // adds the user parameter instance to the local users array
   createUser(user: User) {
-    user._id = Math.floor(Math.random()*Math.floor(10000)).toString();
+    user._id = Math.floor(Math.random()*10000).toString();
     this.users.push(user);
     return user;
   }

@@ -3,9 +3,9 @@
 			<!-- Top left nav bar -->
 				<div class="col-sm-4 d-none d-sm-block">
 					<div class="container-fluid"> 
-						<a class="pg-font-white" routerLink="/user/:uid/website"><i class="fas fa-chevron-left"></i></a>
-						<a class="pg-no-underline pg-left-padding" routerLink="/user/:uid/website"><b class="pg-font-white pg-underline">Websites</b></a>
-						<a routerLink="/user/:uid/website/new" class="pg-font-white float-right"><i class="fas fa-plus"></i></a>
+						<a class="pg-font-white" routerLink="/user/{{uid}}/website"><i class="fas fa-chevron-left"></i></a>
+						<a class="pg-no-underline pg-left-padding" routerLink="/user/{{uid}}/website"><b class="pg-font-white pg-underline">Websites</b></a>
+						<a routerLink="/user/{{uid}}/website/new" class="pg-font-white float-right"><i class="fas fa-plus"></i></a>
 					</div>
 				</div>
 			<!-- /Top left nav bar -->
@@ -13,8 +13,8 @@
 			<!-- Top Right nav bar -->
 				<div class="col-sm-8">
 					<div class="container-fluid"> 
-						<a routerLink="/user/:uid/website/:wid" class="pg-no-underline"><b class="pg-font-white pg-underline">Edit Website</b></a>
-						<a routerLink="/user/:uid/website" class="pg-font-white float-right"><i class="fas fa-check"></i></a>
+						<a routerLink="/user/{{uid}}/website/{{wid}}" class="pg-no-underline"><b class="pg-font-white pg-underline">Edit Website</b></a>
+						<button type="submit" class="btn pg-font-white float-right pg-button-like-a" form="websiteForm"><i class="fas fa-check"></i></button>
 					</div>
 				</div>
 			<!-- /Top Right nav bar -->
@@ -27,22 +27,10 @@
 					<div class="col-sm-4 d-none d-sm-block">
 						<div class="container">
 							<ul class="list-group">
-						  		<li class="list-group-item">
-						    		<a routerLink="/user/:uid/website/:wid/page">Address Book App</a>
-						    		<a class="float-right" routerLink="/user/:uid/website/:wid"><i class="fas fa-cog"></i></a>
-						  		</li>
-						  		<li class="list-group-item">
-						    		<a routerLink="/user/:uid/website/:wid/page">Blogger</a>
-						    		<a class="float-right" routerLink="/user/:uid/website/:wid"><i class="fas fa-cog"></i></a>
-						  		</li>
-						  		<li class="list-group-item">
-						    		<a routerLink="/user/:uid/website/:wid/page">Blogging App</a>
-						    		<a class="float-right" routerLink="/user/:uid/website/:wid"><i class="fas fa-cog"></i></a>
-						  		</li>
-						  		<li class="list-group-item">
-						    		<a routerLink="/user/:uid/website/:wid/page">Script Testing App</a>
-						    		<a class="float-right" routerLink="/user/:uid/website/:wid"><i class="fas fa-cog"></i></a>
-						  		</li>
+								<li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let website of websites" >
+			    					<a routerLink="/user/{{uid}}/website/{{website._id}}/page">{{website.name}}</a>
+			    					<a routerLink="/user/{{uid}}/website/{{website._id}}"><i class="fas fa-cog"></i></a>
+			  					</li>
 							</ul>
 						</div>
 					</div>
@@ -51,18 +39,20 @@
 			<!-- right form part -->
 				<div class="col-sm-8">
 					<div class="container">
-						<form>
+						<form id="websiteForm" (ngSubmit)="update()" #f="ngForm">
 							<!-- website name -->
 							<div class="form-group">
 								<label for="website-name"><strong>Website Name</strong></label>
-								<input class="form-control" type="text" name="website-name" placeholder="Type your website name">
+								<input class="form-control" type="text" name="name" placeholder="Type your website name" required ngModel="{{website.name}}" #name="ngModel">
 							</div>
+							<span class="alert alert-warning pg-small-alert" *ngIf="name.invalid && name.touched">Please provide a name for the website</span>
 							<!-- website desciption -->
 							<div class="form-group">
 								<label for="website-description"><strong>Website Description</strong></label>
-								<textarea class="form-control" rows="5" placeholder="Input your description for this site"></textarea>
+								<textarea class="form-control" rows="5" name="description" placeholder="Input your description for this site" ngModel="{{website.description}}" #description="ngModel"></textarea>
 							</div>
-							<a class="btn btn-danger btn-block" routerLink="/user/:uid/website">Delete</a>
+							<button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+							<button type="submit" class="btn btn-primary float-right">Update</button>
 						</form>
 					</div>
 				</div>

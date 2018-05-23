@@ -3,19 +3,24 @@
 			<h1>Register</h1>
 
 			<!-- form -->
-				<form>
+			<div class="alert alert-danger" *ngIf="usernameError">Username already taken, please try another one</div>
+			<div class="alert alert-danger" *ngIf="passwordError">Password(s) doesn't match</div>
+				<form (ngSubmit)="register()" #f="ngForm">
+					<span class ="alert alert-warning pg-small-alert" *ngIf ="username.invalid && username.touched">Please enter username</span>
 					<div class="form-group">
-						<input type="text" name="username" placeholder="Username" class="form-control">
+						<input type="text" name="username" placeholder="Username" class="form-control" required ngModel #username="ngModel">
 					</div>
+					<span class ="alert alert-warning pg-small-alert" *ngIf ="password.invalid && password.touched">Please enter password</span>
 					<div class="form-group">
-						<input type="password" name="password" placeholder="Password" class="form-control">
+						<input type="password" name="password" placeholder="Password" class="form-control" required ngModel #password="ngModel">
 					</div>
+					<span class ="alert alert-warning pg-small-alert" *ngIf ="verifyPassword.invalid && verifyPassword.touched">Please Re-enter password</span>
 					<div class="form-group">
-						<input type="password" name="verify-password" placeholder="Verify password" class="form-control">
+						<input type="password" name="verifyPassword" placeholder="Verify password" class="form-control" required ngModel #verifyPassword="ngModel">
 					</div>
 					<!-- buttons -->
-						<a class="btn btn-primary btn-block" routerLink="/user/:uid">Register</a>
-						<a class="btn btn-danger btn-block" routerLink="/login">Cancel</a>
+						<button class="btn btn-primary btn-block" type="submit" [disabled]="f.invalid">Register</button>
+						<button class="btn btn-danger btn-block" routerLink="/login">Cancel</button>
 					<!-- /buttons -->
 				</form>
 			<!-- /form -->
