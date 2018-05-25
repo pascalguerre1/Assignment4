@@ -16,7 +16,7 @@ export class WebsiteEditComponent implements OnInit {
 	uid: string;
 	websites: Website[];
 	name: string;
-	desciption: string;
+	description: string;
 	website: Website;
 	wid: string;
 
@@ -30,19 +30,19 @@ export class WebsiteEditComponent implements OnInit {
   		this.websites = this.websiteService.findWebsitesByUser(this.uid);
   		this.website = this.websiteService.findWebsiteById(this.wid);
   		this.name = this.website.name;
-  		this.desciption = this.website.desciption;
+  		this.description = this.website.description;
 
   	})
   }
 
   update(){
   	this.name = this.websiteForm.value.name;
-  	this.desciption = this.websiteForm.value.desciption;
+  	this.description = this.websiteForm.value.description;
   	const updatedWeb: Website = {
   		_id: this.wid,
   		name: this.name,
   		developerId: this.uid,
-  		desciption: this.desciption
+  		description: this.description
   	}
   	this.websiteService.updateWebsite(this.wid, updatedWeb);
   	this.router.navigate(['user', this.uid, 'website']);

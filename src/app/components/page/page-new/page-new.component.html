@@ -1,24 +1,27 @@
 	<!-- Top nav bar -->
 		<nav class="navbar navbar-light pg-gray fixed-top">
-			<a routerLink="/user/:uid/website/:wid/page" class="pg-font-black"><i class="fas fa-chevron-left"></i></a>
+			<a routerLink="/user/{{uid}}/website/{{wid}}/page" class="pg-font-black"><i class="fas fa-chevron-left"></i></a>
 			<div class="pg-80-width">
-				<a class="navbar-brand font-weight-bold float-left" routerLink="/user/:uid/website/:wid/page/new"><b class="pg-text-gray pg-underline">New page</b></a>
+				<a class="navbar-brand font-weight-bold float-left" routerLink="/user/{{uid}}/website/{{wid}}/page/new"><b class="pg-text-gray pg-underline">New page</b></a>
 			</div>
-			<a class="pg-font-black" routerLink="/user/:uid/website/:wid/page"><i class="fas fa-check"></i></a>
+			<button [disabled]="f.invalid" class="btn pg-font-black pg-button-like-a" type="submit" form="pageForm"><i class="fas fa-check"></i></button>
 		</nav>
 		<!-- /Top nav bar -->
 
 	<!-- form -->
 		<div class="container-fluid">
-			<form>
+			<form id="pageForm" (ngSubmit)="create()" #f="ngForm">
 				<div class="form-group">
 					<label for="Name"><strong>Name</strong></label>
-					<input type="text" name="name" class="form-control" placeholder="Page Name">
+					<input type="text" required ngModel #name="ngModel" name="name" class="form-control" placeholder="Page Name">
 				</div>
+				<div *ngIf="name.invalid && name.touched" class="alert alert-warning">Name can't be empty</div>
 				<div class="form-group">
-					<label for="text"><strong>Title</strong></label>
-					<input type="text" name="text" class="form-control" placeholder="Page Title">
+					<label for="text"><strong>Description</strong></label>
+					<input type="text" ngModel #description="ngModel" name="description" class="form-control" placeholder="Page Description">
 				</div>
+				<button [disabled]="f.invalid" class="btn btn-success btn-block" type="submit" >Submit</button>
+				<a class="btn btn-danger btn-block" routerLink="/user/{{uid}}/website/{{wid}}/page">Cancel</a>
 			</form>
 		</div>
 	<!-- /form -->
@@ -26,7 +29,7 @@
 	<!-- Footer nav bar -->
 		<nav class="navbar navbar-dark pg-gray fixed-bottom">
 			<div class="pg-width">
-				<a class="float-right" routerLink="/user/:uid"><i class="fas fa-user"></i></a>
+				<a class="float-right" routerLink="/user/{{uid}}"><i class="fas fa-user"></i></a>
 			</div>
 		</nav>
 	<!-- /Footer nav bar -->

@@ -16,7 +16,7 @@ export class WebsiteNewComponent implements OnInit {
 	uid: string;
 	websites: Website[];
 	name: string;
-	desciption: string;
+	description: string;
 
   constructor(private websiteService: WebsiteService, 
   	private activatedRoute: ActivatedRoute, private router: Router) { }
@@ -30,12 +30,12 @@ export class WebsiteNewComponent implements OnInit {
 
 create(){
 	this.name = this.websiteForm.value.name;
-	this.desciption = this.websiteForm.value.desciption;
+	this.description = this.websiteForm.value.description;
 	const newWebsite: Website = {
 		_id: "",
 		name: this.name,
 		developerId: "",
-		desciption: this.desciption,
+		description: this.description,
 	};
 	this.websiteService.createWebsite(this.uid, newWebsite);
 	// console.log(this.websiteService.websites);
