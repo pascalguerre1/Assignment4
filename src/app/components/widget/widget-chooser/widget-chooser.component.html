@@ -1,8 +1,8 @@
 	<!-- Top nav bar -->
 		<nav class="navbar navbar-light pg-gray fixed-top">
-			<a class="pg-font-black" routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-chevron-left"></i></a>
+			<a class="pg-font-black" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"><i class="fas fa-chevron-left"></i></a>
 			<div class="pg-80-width">
-				<a class="navbar-brand font-weight-bold float-left" routerLink="/user/:uid/website/:wid/page/:pid/widget/new"><b class="pg-text-gray pg-underline">Choose Widget</b></a>
+				<a class="navbar-brand font-weight-bold float-left" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new"><b class="pg-text-gray pg-underline">Choose Widget</b></a>
 			</div>
 		</nav>
 	<!-- /Top nav bar -->
@@ -11,7 +11,7 @@
 		<div class="container-fluid">
 			<ul class="list-group">
 			  <li class="list-group-item d-flex justify-content-between align-items-center">
-			    <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid">Header</a>
+			    <button type="button" class="btn pg-button-like-a" (click)="create('HEADING')">Header</button>
 			  </li>
 			  <li class="list-group-item d-flex justify-content-between align-items-center">
 			    <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid">Label</a>
@@ -29,10 +29,10 @@
 			    <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid">Button</a>
 			  </li>
 			  <li class="list-group-item d-flex justify-content-between align-items-center">
-			    <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid">Image</a>
+			    <button type="button" class="btn pg-button-like-a" (click)="create('IMAGE')">Image</button>
 			  </li>
 			  <li class="list-group-item d-flex justify-content-between align-items-center">
-			    <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid">Youtube</a>
+			    <button type="button" class="btn pg-button-like-a" (click)="create('YOUTUBE')">Youtube</button>
 			  </li>
 			  <li class="list-group-item d-flex justify-content-between align-items-center">
 			    <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid">Data Table</a>
@@ -47,7 +47,7 @@
 	<!-- Footer nav bar -->
 		<nav class="navbar navbar-dark pg-gray fixed-bottom">
 			<div class="pg-width">
-				<a class="float-right" routerLink="/user/:uid"><i class="fas fa-user"></i></a>
+				<a class="float-right" routerLink="/user/{{uid}}"><i class="fas fa-user"></i></a>
 			</div>
 		</nav>
 	<!-- /Footer nav bar -->

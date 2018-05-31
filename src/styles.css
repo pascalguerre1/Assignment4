@@ -19,3 +19,4 @@ i {vertical-align: middle;}
 .pg-hor-space{padding-left: 20px;}
 .pg-small-alert{padding: 1px 1px}
 .pg-button-like-a{background-color: transparent;}
+.pg-button-like-a:hover{text-decoration: underline; color: blue;}
