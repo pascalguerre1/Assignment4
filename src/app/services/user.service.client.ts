@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model.client';
+import {Http, Response} from '@angular/http';
+import { map } from "rxjs/operators";
+import { environment } from '../../environments/environment'
+
 // injecting service into module
 @Injectable()
 
 export class UserService {
 
-  constructor() { }
+  baseUrl = environment.baseUrl;
+
+  constructor(private http: Http) { }
 
 users: User[] = [
 	{_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice@gmail.com"},
@@ -33,13 +39,27 @@ users: User[] = [
       if (this.users[x].username === username) {
         return this.users[x]; }
     }
+
+    // return this.users.find(function(user: User){
+    //   return user.username === username;
+    // })
    }
 // returns the user whose username and password match the username and password parameters
   findUserByCredentials(username: string, password: string) { 
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username && this.users[x].password === password) {
-        return this.users[x]; }
-    }
+    // connecting this function with data from server
+    // const url = 'http://localhost:3100/api/user?username='+ username +'&password='+ password;
+    const url = this.baseUrl + '/api/user?username='+ username +'&password='+ password;
+    return this.http.get(url).pipe(map(
+      (response: Response) => {
+        return response.json();
+      }
+      ))
+ 
+    // old code to get data from client array
+    // for (let x = 0; x < this.users.length; x++) {
+    //   if (this.users[x].username === username && this.users[x].password === password) {
+    //     return this.users[x]; }
+    // }
    }
 // updates the user in local users array whose _id matches the userId parameter
   updateUser(userId : string, user: User) { 

@@ -31,6 +31,9 @@ app.set('port', port);
 // Create HTTP server
 const server = http.createServer(app);
 
+// 'require' is the same as import from angular
+require("./server/app.js")(app);
+
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
