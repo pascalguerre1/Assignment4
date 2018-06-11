@@ -20,11 +20,15 @@ export class WidgetListComponent implements OnInit {
   	private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-  	  	this.activatedRoute.params.subscribe(params=>{
+  	  this.activatedRoute.params.subscribe(params=>{
   		this.uid = params['uid'];
   		this.wid = params['wid'];
   		this.pid = params['pid'];
-  		this.widgets = this.widgetService.findWidgetsByPageId(this.pid);
+  		this.widgetService.findWidgetsByPageId(this.pid).subscribe(
+        (widgets: Widget[]) => {
+          this.widgets = widgets;
+        }
+      );
   	})
   }
 
