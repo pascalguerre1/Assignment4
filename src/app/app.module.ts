@@ -19,12 +19,15 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
+
 
 import { Routing } from './app.routing';
 import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
+import { OmdbService } from './services/omdb.service.client';
 
 
 
@@ -45,7 +48,8 @@ import { WidgetService } from './services/widget.service.client';
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    OmdbtestComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,7 @@ import { WidgetService } from './services/widget.service.client';
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, OmdbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

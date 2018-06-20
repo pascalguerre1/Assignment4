@@ -33,18 +33,19 @@
 					<input type="text" name="width" required ngModel="{{widget.width}}" #width="ngModel" class="form-control" placeholder="100%">
 				</div>
 				<div class="alert alert-danger" *ngIf="width.invalid && width.touched">Width can't be empty</div>
-				<!-- Upload -->
-					<div class="form-group">
-						<label for="Upload"><strong>Upload</strong></label>
-						<input type="file" name="Upload" class="form-control" placeholder="Example: 100%">
-					</div>
-				<!-- /Upload -->
+
+				<form ngNoForm action="{{baseUrl}}/api/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/upload" method="post" enctype="multipart/form-data">
+                    <div>
+                        <label class='form-group'><strong>Uploads</strong></label>
+                            <input  name="myFile"   type="file" class="form-control"/>
+                            <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+                    </div>
+                </form>
 				<!-- buttons -->
-					<div>
-						<a class="btn btn-secondary btn-block" routerLink="/#">Upload</a>
-						<button [disabled]="f.invalid" class="btn btn-primary btn-block" type="submit" >Submit</button>
-						<button type="button" class="btn btn-danger btn-block" (click)="remove()">Delete</button>
-					</div>
+				<br>
+				<div>
+					<button type="button" class="btn btn-danger btn-block" (click)="remove()">Delete</button>
+				</div>
 				<!-- /buttons -->
 			</form>
 		</div>
