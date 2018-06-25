@@ -1,60 +1,62 @@
-	<!-- Top nav bar -->
-		<nav class="navbar navbar-light pg-gray fixed-top">
-			<a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="pg-font-black"><i class="fas fa-chevron-left"></i></a>
-			<div class="pg-80-width">
-				<a class="navbar-brand font-weight-bold float-left" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new"><b class="pg-text-gray pg-underline">Widget Edit</b></a>
-			</div>
-			<button [disabled]="f.invalid" type="submit" form="widgetForm" class="btn pg-button-like-a pg-font-black" ><i class="fas fa-check"></i></button>
-		</nav>
-	<!-- /Top nav bar -->
-
-	<!-- form -->
-		<div class="container-fluid">
-			<form id="widgetForm" (ngSubmit)="update()" #f="ngForm">
-				<!-- widget name -->
-				<div class="form-group">
-					<label for="Name"><strong>Name</strong></label>
-					<input type="text" name="name" ngModel="{{widget.name}}" #name="ngModel" class="form-control">
-				</div>
-				<!-- widget text -->
-				<div class="form-group">
-					<label for="text"><strong>Text</strong></label>
-					<input type="text" name="text" ngModel="{{widget.text}}" #text="ngModel" class="form-control">
-				</div>
-				<!-- widget url -->
-				<div class="form-group">
-					<label for="URL"><strong>URL</strong></label>
-					<input type="text" name="url" required ngModel="{{widget.url}}" #url="ngModel" class="form-control" placeholder="http://">
-				</div>
-				<!-- widget Width -->
-				<div class="alert alert-danger" *ngIf="url.invalid && url.touched">URL can't be empty</div>
-				<div class="form-group">
-					<label for="Width"><strong>Width</strong></label>
-					<input type="text" name="width" required ngModel="{{widget.width}}" #width="ngModel" class="form-control" placeholder="100%">
-				</div>
-				<div class="alert alert-danger" *ngIf="width.invalid && width.touched">Width can't be empty</div>
-
-				<form ngNoForm action="{{baseUrl}}/api/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/upload" method="post" enctype="multipart/form-data">
-                    <div>
-                        <label class='form-group'><strong>Uploads</strong></label>
-                            <input  name="myFile"   type="file" class="form-control"/>
-                            <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
-                    </div>
-                </form>
-				<!-- buttons -->
-				<br>
-				<div>
-					<button type="button" class="btn btn-danger btn-block" (click)="remove()">Delete</button>
-				</div>
-				<!-- /buttons -->
-			</form>
+<!-- Top nav bar -->
+	<nav class="navbar navbar-light pg-gray fixed-top">
+		<a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="pg-font-black"><i class="fas fa-chevron-left"></i></a>
+		<div class="pg-80-width">
+			<a class="navbar-brand font-weight-bold float-left" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new"><b class="pg-text-gray pg-underline">Widget Edit</b></a>
 		</div>
-	<!-- /form -->
+		<button [disabled]="f.invalid" type="submit" form="widgetForm" class="btn pg-button-like-a pg-font-black" ><i class="fas fa-check"></i></button>
+	</nav>
+<!-- /Top nav bar -->
 
-	<!-- Footer nav bar -->
-		<nav class="navbar navbar-dark fixed-bottom pg-gray">
-			<div class="pg-width">
-				<a class="float-right" routerLink="/user/{{uid}}"><i class="fas fa-user"></i></a>
+<!-- form -->
+	<div class="container-fluid">
+		<form id="widgetForm" (ngSubmit)="update()" #f="ngForm">
+			<!-- widget name -->
+			<div class="form-group">
+				<label for="Name"><strong>Name</strong></label>
+				<input type="text" name="name" ngModel="{{widget.name}}" #name="ngModel" class="form-control">
 			</div>
-		</nav>
-	<!-- /Footer nav bar -->
+			<!-- widget text -->
+			<div class="form-group">
+				<label for="text"><strong>Text</strong></label>
+				<input type="text" name="text" ngModel="{{widget.text}}" #text="ngModel" class="form-control">
+			</div>
+			<!-- widget url -->
+			<div class="form-group">
+				<label for="URL"><strong>URL</strong></label>
+				<input type="text" name="url" required ngModel="{{widget.url}}" #url="ngModel" class="form-control" placeholder="http://">
+			</div>
+			<!-- widget Width -->
+			<div class="alert alert-danger" *ngIf="url.invalid && url.touched">URL can't be empty</div>
+			<div class="form-group">
+				<label for="Width"><strong>Width</strong></label>
+				<input type="text" name="width" required ngModel="{{widget.width}}" #width="ngModel" class="form-control" placeholder="100%">
+			</div>
+			<div class="alert alert-danger" *ngIf="width.invalid && width.touched">Width can't be empty</div>
+
+			<form ngNoForm action="{{baseUrl}}/api/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/upload" method="post" enctype="multipart/form-data">
+                <div>
+                    <label class='form-group'><strong>Uploads</strong></label>
+                        <input  name="myFile"   type="file" class="form-control"/>
+                        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+                </div>
+            </form>
+			<!-- buttons -->
+			<br>
+			<button class="btn btn-primary btn-block" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/flickr">Choose from flickr</button>
+			<br>
+			<div>
+				<button type="button" class="btn btn-danger btn-block" (click)="remove()">Delete</button>
+			</div>
+			<!-- /buttons -->
+		</form>
+	</div>
+<!-- /form -->
+
+<!-- Footer nav bar -->
+	<nav class="navbar navbar-dark fixed-bottom pg-gray">
+		<div class="pg-width">
+			<a class="float-right" routerLink="/user/{{uid}}"><i class="fas fa-user"></i></a>
+		</div>
+	</nav>
+<!-- /Footer nav bar -->
