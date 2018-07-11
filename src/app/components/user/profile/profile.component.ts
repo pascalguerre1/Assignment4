@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../../../models/user.model.client';
 import { NgForm } from '@angular/forms';
+import { SharedService } from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,6 @@ export class ProfileComponent implements OnInit {
 	submitSuccess: boolean;
   aUser: User;
   user: User = {
-    _id: "",
     username: "",
     password: "",
     firstName: "",
@@ -33,25 +33,17 @@ export class ProfileComponent implements OnInit {
    };
 
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.usernameTaken = false;
     this.submitSuccess = false;
-  	this.activatedRoute.params.subscribe(
-  		params => {
-  			this.uid = params['uid'];
-        this.userService.findUserById(this.uid).subscribe(
-          (user: User) => {
-            this.user = user;
-            this.username = this.user.username;
-            this.email = this.user.email;
-            this.firstName = this.user.firstName;
-            this.lastName = this.user.lastName
-            this.oldUsername = this.user.username;
-          }
-        );
-  		})
+    this.user = this.sharedService.user;
+    this.username = this.user.username;
+    this.email = this.user.email;
+    this.firstName = this.user.firstName;
+    this.lastName = this.user.lastName
+    this.oldUsername = this.user.username;
   }
 
   update(){
@@ -67,7 +59,6 @@ export class ProfileComponent implements OnInit {
       }
     );
     //check if new user is taken or the username was not changed
-  	// const aUser: User = this.userService.findUserByUsername(this.username);
   	if (this.aUser != undefined && this.oldUsername !== this.username){
   		this.usernameTaken = true;
   		this.submitSuccess = false;
@@ -80,7 +71,7 @@ export class ProfileComponent implements OnInit {
   			lastName: this.lastName,
   			email: this.email,
   		};
-  		this.userService.updateUser(this.uid, updatedUser).subscribe(
+  		this.userService.updateUser(this.user._id, updatedUser).subscribe(
         (user2: User) =>{
           this.usernameTaken = false;
           this.submitSuccess = true;
