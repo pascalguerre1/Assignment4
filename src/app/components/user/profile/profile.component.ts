@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../../../models/user.model.client';
 import { NgForm } from '@angular/forms';
@@ -33,12 +33,13 @@ export class ProfileComponent implements OnInit {
    };
 
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private sharedService: SharedService) { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private sharedService: SharedService, private router: Router) { }
 
   ngOnInit() {
     this.usernameTaken = false;
     this.submitSuccess = false;
     this.user = this.sharedService.user;
+    this.uid = this.user._id;
     this.username = this.user.username;
     this.email = this.user.email;
     this.firstName = this.user.firstName;
@@ -79,6 +80,14 @@ export class ProfileComponent implements OnInit {
       );
   	}
 
+  }
+
+  logout(){
+   this.userService.logout().subscribe(
+     (data: any) => {
+       this.router.navigate(['/login'])
+     }
+   );
   }
 
 }

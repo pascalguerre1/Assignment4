@@ -30,6 +30,7 @@ import { WidgetService } from './services/widget.service.client';
 // import { OmdbService } from './services/omdb.service.client';
 import { FlickrService } from './services/flickr.service.client';
 import { SharedService } from './services/shared.service.client';
+import { AuthGuard } from './services/auth-guard.service';
 
 
 
@@ -60,7 +61,7 @@ import { SharedService } from './services/shared.service.client';
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
