@@ -51,6 +51,11 @@
 							<iframe [src]="this.getYoutubeURL(widget.url)" [style.width]="widget.width" frameborder="0" allowfullscreen></iframe>
 						</div>
 					</div>
+					<!-- HTML -->
+					<div *ngSwitchCase="'HTML'">
+						<div [innerHTML]="parsedHTML(widget.text)">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

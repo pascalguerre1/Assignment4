@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
@@ -19,7 +20,6 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
-// import { OmdbtestComponent } from './components/omdbtest/omdbtest.component';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 import { Routing } from './app.routing';
@@ -27,10 +27,10 @@ import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
-// import { OmdbService } from './services/omdb.service.client';
 import { FlickrService } from './services/flickr.service.client';
 import { SharedService } from './services/shared.service.client';
 import { AuthGuard } from './services/auth-guard.service';
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 
 
 
@@ -52,14 +52,15 @@ import { AuthGuard } from './services/auth-guard.service';
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    // OmdbtestComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    WidgetHtmlComponent
   ],
   imports: [
     BrowserModule,
     Routing,
     FormsModule,
-    HttpModule
+    HttpModule,
+    QuillEditorModule
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService, SharedService, AuthGuard],
   bootstrap: [AppComponent]
