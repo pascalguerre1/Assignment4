@@ -1,0 +1,48 @@
+	<!-- Top nav bar -->
+		<nav class="navbar navbar-light pg-gray fixed-top">
+			<a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="pg-font-black"><i class="fas fa-chevron-left"></i></a>
+			<div class="pg-80-width">
+				<a class="navbar-brand font-weight-bold float-left" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new"><b class="pg-text-gray pg-underline">Widget Edit</b></a>
+			</div>
+			<button [disabled]="f.invalid" type="submit" form="widgetForm" class="btn pg-button-like-a pg-font-black" ><i class="fas fa-check"></i></button>
+		</nav>
+	<!-- /Top nav bar -->
+
+	<!-- form -->
+		<div class="container-fluid">
+			<form id="widgetForm" (ngSubmit)="update()" #f="ngForm">
+				<div class="form-group">
+					<label for="Name"><strong>Name</strong></label>
+					<input type="text" ngModel="{{widget.name}}" #name="ngModel" name="name" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="Rows"><strong>Rows</strong></label>
+					<input type="number" ngModel="{{widget.rows}}" #rows="ngModel" name="rows" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="Placeholder"><strong>Place holder</strong></label>
+					<input type="text" ngModel="{{widget.placeholder}}" #placeholder="ngModel" name="placeholder" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="Formatted"><strong>Formatted</strong></label>
+					<input type="checkbox" ngModel="{{widget.formatted}}" #formatted="ngModel" name="formatted" >
+				</div>
+				<!-- buttons -->
+					<div>
+						<button routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget" class="btn btn-warning btn-block" type="button">Cancel</button>
+						<button type="button" class="btn btn-danger btn-block" (click)="remove()">Delete</button>
+					</div>
+				<!-- /buttons -->
+			</form>
+		</div>
+	<!-- /form -->
+
+
+
+	<!-- Footer nav bar -->
+		<nav class="navbar navbar-dark fixed-bottom pg-gray">
+			<div class="pg-width">
+				<a class="float-right" routerLink="/user/:uid"><i class="fas fa-user"></i></a>
+			</div>
+		</nav>
+	<!-- /Footer nav bar -->
