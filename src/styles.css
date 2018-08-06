@@ -20,3 +20,14 @@ i {vertical-align: middle;}
 .pg-small-alert{padding: 1px 1px}
 .pg-button-like-a{background-color: transparent;}
 .pg-button-like-a:hover{text-decoration: underline; color: blue;}
+.animate-bottom{
+	position: relative;
+	animation: animatebottom 0.5s;
+}
+@keyframes animatebottom {
+	from{bottom:-300px; opacity: 0;}
+	to{bottom: 0; opacity: 1;}
+}
+.loading-iframe{
+	background: url(assets/Loading_icon.gif) center center no-repeat;
+}

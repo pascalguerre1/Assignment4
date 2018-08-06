@@ -6,7 +6,7 @@
 	<!-- /top nav bar -->
 
 	<!-- form -->
-		<div class="container">
+		<div class="container animate-bottom">
 			<div class="alert alert-danger" *ngIf="usernameTaken">Username already taken, please try another one</div>
 			<div class="alert alert-success" *ngIf="submitSuccess">Update Successful!</div>
 				<form (ngSubmit)="update()" id="profileForm" #f="ngForm">

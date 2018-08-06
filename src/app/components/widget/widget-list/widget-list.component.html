@@ -48,7 +48,7 @@
 					<!-- youtube -->
 					<div *ngSwitchCase="'YOUTUBE'">
 						<div class="embed-responsive embed-responsive-16by9">
-							<iframe [src]="this.getYoutubeURL(widget.url)" [style.width]="widget.width" frameborder="0" allowfullscreen></iframe>
+							<iframe class="loading-iframe" [src]="this.getYoutubeURL(widget.url)" [style.width]="widget.width" frameborder="0" allowfullscreen></iframe>
 						</div>
 					</div>
 					<!-- HTML -->
