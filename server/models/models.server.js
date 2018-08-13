@@ -4,7 +4,7 @@ if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
   var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
   var password = process.env.MLAB_PASSWORD_WEBDEV;
   connectionString = 'mongodb://' + username + ':' + password;
-  connectionString += '@ds121262.mlab.com:21262/heroku_cq1239dj'; // use yours
+  connectionString += '@ds119702.mlab.com:19702/heroku_p1bv8wqg'; // use yours
 }
 
 var mongoose = require("mongoose");
